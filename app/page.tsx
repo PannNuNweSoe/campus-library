@@ -1,7 +1,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { PortalSelector } from "./PortalSelector";
+import { SignInButton } from "./SignInButton";
 
 export default async function HomePage() {
   const supabase = await createClient();
@@ -52,9 +52,9 @@ export default async function HomePage() {
         <div className="auth-card">
           <p className="eyebrow">WELCOME BACK</p>
           <h2>Make yourself at home.</h2>
-          <p>Select your portal to continue.</p>
+          <p>Sign in to your student library account.</p>
 
-          <PortalSelector />
+          <SignInButton portal="student" />
 
           <div className="auth-divider">
             <span>YOUR LIBRARY, IN ONE PLACE</span>
@@ -67,7 +67,7 @@ export default async function HomePage() {
           </ul>
 
           <p className="auth-footnote">
-            For students, staff, and the joy of a good book.
+            Your campus library, all in one place.
           </p>
         </div>
       </section>
