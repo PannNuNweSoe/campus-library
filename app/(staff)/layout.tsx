@@ -22,11 +22,12 @@ export default async function StaffLayout({
 
   return (
     <div className="app-shell">
+      <NotificationBell supabase={supabase} userId={user.id} />
+
       <aside className="sidebar">
         <div className="brand">Campus Library</div>
 
         <nav>
-          <span className="nav-caption">Library operations</span>
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -36,10 +37,6 @@ export default async function StaffLayout({
               {item.label}
             </Link>
           ))}
-          <span className="nav-caption nav-caption-spaced">Personal</span>
-          <Link href="/dashboard" className="nav-link nav-link-staff">
-            Student dashboard
-          </Link>
         </nav>
 
         <div className="sidebar-footer">
@@ -54,19 +51,7 @@ export default async function StaffLayout({
         </div>
       </aside>
 
-      <div className="portal-workspace">
-        <header className="portal-header">
-          <div>
-            <p className="portal-kicker">Campus Library</p>
-            <p className="portal-context">Staff workspace</p>
-          </div>
-          <div className="portal-header-actions">
-            <span className="portal-role capitalize">{profile.role}</span>
-            <NotificationBell supabase={supabase} userId={user.id} />
-          </div>
-        </header>
-        <main className="content">{children}</main>
-      </div>
+      <main className="content">{children}</main>
     </div>
   );
 }

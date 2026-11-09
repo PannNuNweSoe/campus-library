@@ -84,46 +84,15 @@ export default async function CirculationDeskPage(
   const today = toBangkokDateString(new Date());
 
   return (
-    <div className="circulation-page">
-      <header className="circulation-hero">
-        <div className="circulation-hero-copy">
-          <p className="eyebrow">STAFF WORKSPACE&nbsp; / &nbsp;CIRCULATION</p>
-          <h1>Make every handoff<br />a good one.</h1>
-          <p>Check out a new read, welcome a pickup, or get the collection back on the shelf.</p>
-        </div>
-        <div className="circulation-live-card">
-          <span className="circulation-live-indicator"><i /> DESK STATUS</span>
-          <strong>{activeLoans?.length ?? 0}</strong>
-          <span>active loans</span>
-          <small>Across the campus collection</small>
-          <span className="circulation-live-decoration" aria-hidden="true">C</span>
-        </div>
-        <div className="circulation-hero-bottom">
-          <span>CHECKOUT</span><i /><span>CARE</span><i /><span>RETURN</span>
-        </div>
-      </header>
+    <div>
+      <h1>Circulation Desk</h1>
 
-      <nav className="circulation-step-rail" aria-label="Circulation workflow">
-        <div className="circulation-step is-current"><span>01</span><div><strong>Find a member</strong><small>Look up their account</small></div></div>
-        <span className="circulation-step-connector" />
-        <div className={selectedStudent ? "circulation-step is-current" : "circulation-step"}><span>02</span><div><strong>Choose a book</strong><small>Select an available copy</small></div></div>
-        <span className="circulation-step-connector" />
-        <div className="circulation-step"><span>03</span><div><strong>Complete checkout</strong><small>Confirm the handoff</small></div></div>
-      </nav>
-
-      <section className="panel circulation-checkout-panel">
-        <header className="circulation-panel-heading">
-          <div>
-            <p className="eyebrow">CHECKOUT & PICKUP</p>
-            <h2>{selectedStudent ? "Ready for the next chapter?" : "Start with a member"}</h2>
-            <p>{selectedStudent ? "Choose a title or complete a reservation pickup." : "Search by name or university email to get started."}</p>
-          </div>
-          <span className="circulation-panel-mark" aria-hidden="true">↗</span>
-        </header>
+      <section className="panel">
+        <h2>Check out a book</h2>
 
         {!selectedStudent ? (
           <>
-            <form action="/circulation" method="GET" className="search-box circulation-search">
+            <form action="/circulation" method="GET" className="search-box">
               <input
                 type="text"
                 name="studentQuery"
@@ -156,15 +125,10 @@ export default async function CirculationDeskPage(
           </>
         ) : (
           <>
-            <div className="selected-row circulation-selected-member">
+            <div className="selected-row">
               <div>
-                <span className="circulation-member-avatar" aria-hidden="true">
-                  {selectedStudent.name.slice(0, 1).toUpperCase()}
-                </span>
-                <span className="circulation-member-details">
                 <strong>{selectedStudent.name}</strong>
-                <span className="muted small">{selectedStudent.email}</span>
-                </span>
+                <span className="muted small"> · {selectedStudent.email}</span>
                 {selectedStudent.eligibility_status !== "eligible" && (
                   <span
                     className={`badge ${
@@ -209,7 +173,7 @@ export default async function CirculationDeskPage(
               </div>
             )}
 
-            <form action="/circulation" method="GET" className="search-box circulation-search" style={{ marginTop: "0.9rem" }}>
+            <form action="/circulation" method="GET" className="search-box" style={{ marginTop: "0.9rem" }}>
               <input type="hidden" name="studentId" value={selectedStudent.id} />
               <input
                 type="text"
@@ -257,19 +221,10 @@ export default async function CirculationDeskPage(
         )}
       </section>
 
-      <section className="panel circulation-loans-panel">
-        <header className="circulation-loans-heading">
-          <div>
-            <p className="eyebrow">COLLECTION PULSE</p>
-            <h2>Active loans</h2>
-          </div>
-          <span className="circulation-loan-count">{activeLoans?.length ?? 0} currently out</span>
-        </header>
+      <section className="panel">
+        <h2>Active loans</h2>
         {!activeLoans || activeLoans.length === 0 ? (
-          <div className="circulation-empty-loans">
-            <span aria-hidden="true">✳</span>
-            <p>No books are out right now. The shelves are all caught up.</p>
-          </div>
+          <p className="muted">No active loans.</p>
         ) : (
           <table className="table">
             <thead>

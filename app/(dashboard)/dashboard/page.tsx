@@ -37,29 +37,10 @@ export default async function DashboardPage() {
   const readyReservations = activeReservations.filter((r) => r.status === "ready");
 
   return (
-    <div className="dashboard-page">
-      <header className="dashboard-hero">
-        <div className="dashboard-hero-copy">
-          <p className="eyebrow">YOUR CAMPUS COLLECTION</p>
-          <h1>Your reading life, in one place.</h1>
-          <p>
-            Keep an eye on your loans, plan your next read, and save a place
-            for books that are in high demand.
-          </p>
-          <Link href="/browse" className="btn btn-primary dashboard-browse-link">
-            Explore the collection <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-        <div className="dashboard-hero-art" aria-hidden="true">
-          <span className="dashboard-art-sun" />
-          <span className="dashboard-art-book dashboard-art-book-back" />
-          <span className="dashboard-art-book dashboard-art-book-middle" />
-          <span className="dashboard-art-book dashboard-art-book-front" />
-          <span className="dashboard-art-caption">READ · WANDER · REPEAT</span>
-        </div>
-      </header>
+    <div>
+      <h1>Dashboard</h1>
 
-      <section className="stat-grid dashboard-stats" aria-label="Library account summary">
+      <section className="stat-grid">
         <StatCard label="Active loans" value={loans.length} href="/loans" />
         <StatCard
           label="Overdue"

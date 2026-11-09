@@ -23,17 +23,18 @@ export default async function DashboardLayout({
 
   const { data: profile } = await supabase
     .from("users")
-    .select("name, role, eligibility_status")
+    .select("name, eligibility_status")
     .eq("id", user.id)
     .single();
 
   return (
     <div className="app-shell">
+      <NotificationBell supabase={supabase} userId={user.id} />
+
       <aside className="sidebar">
         <div className="brand">Campus Library</div>
 
         <nav>
-          <span className="nav-caption">Student portal</span>
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
@@ -43,23 +44,12 @@ export default async function DashboardLayout({
               {item.label}
             </Link>
           ))}
-          {(profile?.role === "staff" || profile?.role === "admin") && (
-            <>
-              <span className="nav-caption nav-caption-spaced">Library team</span>
-              <Link href="/circulation" className="nav-link nav-link-staff">
-                Staff tools
-              </Link>
-            </>
-          )}
         </nav>
 
         <div className="sidebar-footer">
           <div className="user-chip">
             <span className="user-name">
               {profile?.name ?? user.email}
-            </span>
-            <span className="badge badge-info capitalize">
-              {profile?.role ?? "student"}
             </span>
 
             {profile?.eligibility_status === "ineligible" && (
@@ -73,19 +63,7 @@ export default async function DashboardLayout({
         </div>
       </aside>
 
-      <div className="portal-workspace">
-        <header className="portal-header">
-          <div>
-            <p className="portal-kicker">Campus Library</p>
-            <p className="portal-context">Student portal</p>
-          </div>
-          <div className="portal-header-actions">
-            <span className="portal-role">Student</span>
-            <NotificationBell supabase={supabase} userId={user.id} />
-          </div>
-        </header>
-        <main className="content">{children}</main>
-      </div>
+      <main className="content">{children}</main>
     </div>
   );
 }

@@ -31,37 +31,31 @@ export function SearchBox({
   }
 
   return (
-    <form className="search-box catalog-search-form" onSubmit={handleSubmit} role="search">
-      <label className="catalog-search-input">
-        <span aria-hidden="true">⌕</span>
-        <input
-          type="search"
-          placeholder="Try a title, author, or subject..."
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          aria-label="Search resources"
-        />
-      </label>
+    <form className="search-box" onSubmit={handleSubmit} role="search">
+      <input
+        type="search"
+        placeholder="Search by title, author, category, or description..."
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        aria-label="Search resources"
+      />
 
-      <label className="catalog-search-category">
-        <span className="catalog-select-label">SUBJECT</span>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          aria-label="Filter by category"
-        >
-          <option value="">All categories</option>
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        aria-label="Filter by category"
+      >
+        <option value="">All categories</option>
 
-          {categories.map((item) => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-      </label>
+        {categories.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
 
-      <button type="submit" className="btn btn-primary catalog-search-submit">
-        <span>Search shelves</span><span aria-hidden="true">→</span>
+      <button type="submit" className="btn btn-primary">
+        Search
       </button>
     </form>
   );
