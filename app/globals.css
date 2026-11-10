@@ -1278,6 +1278,41 @@ h2 {
 }
 
 @media (max-width: 540px) {
+  .sidebar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.65rem 0.75rem;
+    align-items: center;
+    padding: 0.75rem 1rem 0.65rem;
+  }
+
+  .brand {
+    margin: 0;
+  }
+
+  .sidebar-footer {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebar nav {
+    grid-column: 1 / -1;
+    width: 100%;
+    gap: 0.15rem;
+    margin: 0;
+  }
+
+  .nav-link {
+    padding: 0.55rem 0.65rem;
+    font-size: 0.84rem;
+  }
+
+  .content {
+    padding: 1.25rem 0.9rem 2rem;
+  }
+
   .auth-screen {
     padding: 0.75rem;
   }
@@ -1343,6 +1378,7 @@ h2 {
     overflow-x: auto;
     flex-wrap: nowrap;
     padding: 0.25rem 0;
+    scrollbar-width: thin;
   }
 
   .nav-link {
