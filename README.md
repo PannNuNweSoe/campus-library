@@ -289,3 +289,10 @@ confirmed.
 Run `npm run lint`, `npm test`, and `npm run build` before deployment.
 Vitest currently includes unit tests for the Bangkok date conversion helper;
 it does not yet cover the full acceptance criteria.
+
+## Presentation checklist
+
+Before demonstrating the system, verify the deployed URL, prepare test
+accounts for the student and staff workflows, and record the results of
+`npm test` and `npm run build`. Keep the integration request and response
+evidence available without exposing API keys or other environment secrets.
